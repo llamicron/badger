@@ -3,6 +3,7 @@
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 
 use App\User;
+use App\Counselor;
 
 class UserTest extends TestCase {
 
