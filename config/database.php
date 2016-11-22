@@ -52,6 +52,12 @@ return [
             'prefix' => '',
         ],
 
+        'badger_testing_sqlite' => [
+            'driver' => 'sqlite',
+            'database' => database_path('badger_testing.sqlite'),
+            'prefix' => '',
+        ],
+
         'mysql' => [
             'driver' => 'mysql',
             'host' => env('DB_HOST', '127.0.0.1'),

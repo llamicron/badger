@@ -13,6 +13,7 @@ class ExampleTest extends TestCase
      */
     public function testBasicExample()
     {
-        $this->visit('/');
+      $counselor = factory(App\Counselor::class)->create();
+      $counselor->save();
     }
 }
