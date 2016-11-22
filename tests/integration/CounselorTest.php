@@ -29,4 +29,6 @@ class CounselorTest extends TestCase {
     $this->assertEquals($user->id, $counselor->user_id);
   }
 
+
+
 }
