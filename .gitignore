@@ -3,6 +3,7 @@
 /storage/*.key
 /vendor
 /.idea
+/tests/ExampleTest.php
 Homestead.json
 Homestead.yaml
 .env
