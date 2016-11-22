@@ -1,6 +1,7 @@
 <?php
 
 use App\Counselor;
+use App\User;
 
 // just realised that DatabaseTransaction will 'hold-over' the database and
 // DatabaseMigrations will rollback and re-migrate them for every test.
@@ -19,6 +20,13 @@ class CounselorTest extends TestCase {
     $this->seeInDatabase('counselors', ['first_name' => $counselor->first_name]);
   }
 
-
+  /** @test if */
+  public function a_counselor_can_belong_to_a_user()
+  {
+    $user = factory(User::class)->create();
+    $counselor = factory(Counselor::class)->create();
+    $user->counselors()->save($counselor);
+    $this->assertEquals($user->id, $counselor->user_id);
+  }
 
 }

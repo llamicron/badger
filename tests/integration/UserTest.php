@@ -16,5 +16,16 @@ class UserTest extends TestCase {
     $this->seeInDatabase('users', ['name' => $user->name]);
   }
 
+  /** @test if */
+  public function a_user_can_own_a_counselor()
+  {
+    // this is literally the same test as CounselorTest::a_counselor_can_belong_to_a_user
+    // For verbosity i guess???
+    $user = factory(User::class)->create();
+    $counselor = factory(Counselor::class)->create();
+    $user->counselors()->save($counselor);
+    $this->assertEquals($user->id, $counselor->user_id);
+  }
+
 
 }
