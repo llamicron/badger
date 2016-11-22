@@ -1,3 +1,4 @@
+# please dont change. This is fragile and i don't know how i got it to work.
 language: php
 
 php:

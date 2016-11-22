@@ -58,20 +58,6 @@ return [
             'prefix' => '',
         ],
 
-        'travis_testing' => [
-          'driver' => 'mysql',
-          'host' => '127.0.0.1',
-          'port' => '3306',
-          'database' => database_path('travis_testing.sqlite'),
-          'username' => 'root',
-          'password' => '',
-          'charset' => 'utf8',
-          'collation' => 'utf8_unicode_ci',
-          'prefix' => '',
-          'strict' => true,
-          'engine' => null,
-        ],
-
         'mysql' => [
             'driver' => 'mysql',
             'host' => env('DB_HOST', '127.0.0.1'),

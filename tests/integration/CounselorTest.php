@@ -8,10 +8,12 @@ use App\User;
 // Knawledge
 
 use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Illuminate\Foundation\Testing\DatabaseTransactions;
 
 class CounselorTest extends TestCase {
 
   use DatabaseMigrations;
+
 
   /** @test if */
   public function the_factory_can_make_a_counselor() {
@@ -27,6 +29,19 @@ class CounselorTest extends TestCase {
     $counselor = factory(Counselor::class)->create();
     $user->counselors()->save($counselor);
     $this->assertEquals($user->id, $counselor->user_id);
+  }
+
+  /** @test if */
+  public function a_counselor_can_retrieve_the_user_it_belongs_to() {
+    $counselor = factory(Counselor::class)->create();
+    $user = factory(User::class)->create();
+
+    $user->counselors()->save($counselor);
+    $oldId = $user->id;
+    unset($user);
+
+    // this is where the magic happens
+    $this->assertEquals($oldId, $counselor->user->id);
   }
 
 

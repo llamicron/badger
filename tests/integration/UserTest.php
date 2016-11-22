@@ -28,5 +28,17 @@ class UserTest extends TestCase {
     $this->assertEquals($user->id, $counselor->user_id);
   }
 
+  /** @test if */
+  public function a_user_can_retrieve_the_counselors_it_owns() {
+    $user = factory(User::class)->create();
+    $counselor = factory(Counselor::class)->create();
+    $user->counselors()->save($counselor);
 
+    $oldId = $counselor->id;
+    unset($counselor);
+
+    $this->assertEquals($oldId, $user->counselors->first()->id);
+  }
+
+  
 }
