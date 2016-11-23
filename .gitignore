@@ -1,5 +1,12 @@
 /node_modules
 /public/storage
+/public/poly
+/public/cfg
+/public/app
+/typings
+/public/css
+/public/js
+
 /storage/*.key
 /vendor
 /.idea

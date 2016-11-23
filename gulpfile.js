@@ -1,19 +1,42 @@
-const elixir = require('laravel-elixir');
+var gulp = require('gulp');
+var webpack = require('gulp-webpack');
+var del = require('del');
 
-require('laravel-elixir-vue-2');
+gulp.task('clean', (cb) => {
+    return del(["public/poly"], cb);
+});
 
-/*
- |--------------------------------------------------------------------------
- | Elixir Asset Management
- |--------------------------------------------------------------------------
- |
- | Elixir provides a clean, fluent API for defining some basic Gulp tasks
- | for your Laravel application. By default, we are compiling the Sass
- | file for your application as well as publishing vendor resources.
- |
- */
+gulp.task('compile', () => {
+    return gulp.src('resources/assets/typescript/main.ts')
+        .pipe(webpack({
+            output: {
+                filename: 'main.js'
+            },
+            resolve: {
+                extensions: ['', '.webpack.js', '.web.js', '.ts', '.js']
+            },
+            module: {
+                loaders: [
+                    { test: /\.ts$/, loader: 'ts-loader'}
+                ]
+            }
+        }))
+        .pipe(gulp.dest('public/js'));
+});
 
-elixir((mix) => {
-    mix.sass('app.scss')
-       .webpack('app.js');
+gulp.task("libs", () => {
+    return gulp.src([
+            'core-js/client/shim.min.js',
+            'systemjs/dist/system-polyfills.js',
+            'systemjs/dist/system.src.js',
+            'reflect-metadata/Reflect.js',
+            'rxjs/**',
+            'zone.js/dist/**',
+            '@angular/**'
+        ], {cwd: "node_modules/**"}) /* Glob required here. */
+        .pipe(gulp.dest("public/poly"));
+});
+
+gulp.task("build", ['clean', 'compile', 'libs'], () => {
+    console.log("Building the project ...");
 });
