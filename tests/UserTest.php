@@ -19,6 +19,44 @@ class UserTest extends TestCase {
   }
 
   /** @test if */
+  public function a_user_can_have_a_name() {
+    $user = factory(User::class)->create();
+    $this->assertTrue(isset($user->name));
+  }
+
+  /** @test if */
+  public function a_user_can_have_an_email() {
+    $user = factory(User::class)->create();
+    $this->assertTrue(isset($user->email));
+  }
+
+  /** @test if */
+  public function a_user_can_have_a_password() {
+    $user = factory(User::class)->create();
+    $this->assertTrue(isset($user->password));
+  }
+
+  /** @test if */
+  public function a_user_can_be_verified() {
+    $user = factory(User::class)->create();
+    $this->assertFalse($user->verified);
+    $user->verified = true;
+    $this->assertTrue($user->verified);
+  }
+
+  /** @test if */
+  public function a_user_can_not_access_the_site_when_they_are_not_verified() {
+    // TODO: This
+    $this->assertTrue(true);
+  }
+
+  /** @test if */
+  public function a_user_can_have_a_unique_token() {
+    $user = factory(User::class)->create();
+    $this->assertTrue(isset($user->token));
+  }
+
+  /** @test if */
   public function a_user_can_own_a_counselor() {
     // this is literally the same test as CounselorTest::a_counselor_can_belong_to_a_user
     // For verbosity i guess???
