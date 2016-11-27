@@ -40,5 +40,5 @@ class UserTest extends TestCase {
     $this->assertEquals($oldId, $user->counselors->first()->id);
   }
 
-  
+
 }

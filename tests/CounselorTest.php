@@ -15,6 +15,7 @@ class CounselorTest extends TestCase {
   use DatabaseMigrations;
 
 
+  // Counselor Specific Tests
   /** @test if */
   public function the_factory_can_make_a_counselor() {
     $counselor = factory(Counselor::class)->create();
@@ -23,8 +24,34 @@ class CounselorTest extends TestCase {
   }
 
   /** @test if */
-  public function a_counselor_can_belong_to_a_user()
-  {
+  public function a_counselor_can_have_a_name() {
+    $counselor = factory(Counselor::class)->create();
+    $this->assertTrue(isset($counselor->first_name));
+    $this->assertTrue(isset($counselor->last_name));
+  }
+
+  /** @test if */
+  public function a_counselor_can_have_contact_information() {
+    $counselor = factory(Counselor::class)->create();
+    $this->assertTrue(isset($counselor->email));
+    $this->assertTrue(isset($counselor->phone));
+  }
+
+  /** @test if */
+  public function a_counselor_can_have_unit_information() {
+    $counselor = factory(Counselor::class)->create();
+    $this->assertTrue(isset($counselor->unit_num));
+    $this->assertTrue(isset($counselor->bsa_id));
+    $this->assertTrue(isset($counselor->unit_only));
+    $this->assertTrue(isset($counselor->ypt));
+  }
+
+
+
+  // Counselor-User Tests
+
+  /** @test if */
+  public function a_counselor_can_belong_to_a_user() {
     $user = factory(User::class)->create();
     $counselor = factory(Counselor::class)->create();
     $user->counselors()->save($counselor);
