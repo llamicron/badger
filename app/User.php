@@ -27,7 +27,8 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
+    // returns a collection of counselors 'owned' by the user
     public function counselors() {
-      return $this->hasMany('App\Counselor');
+      return $this->hasMany(Counselor::class);
     }
 }
