@@ -6,13 +6,14 @@ class DatabaseSeeder extends Seeder
 {
     public function run()
     {
-      if (env('PRODUCTION') === true) {
-        // run prod seeders
-
-      } else {
+      if (env('PRODUCTION') === false) {
         // run dev seeders
         $this->call(DevUsersTableSeeder::class);
         $this->call(DevCounselorsTableSeeder::class);
+        $this->call(DevCounselorsToUsersSeeder::class);
+      } else {
+        // run prod seeders
+        // $this->call(ProdBadgesTableSeeder::class);
       }
     }
 }
@@ -27,8 +28,19 @@ class DevUsersTableSeeder extends Seeder {
 
 class DevCounselorsTableSeeder extends Seeder {
   public function run() {
-    for ($i=0; $i < 50; $i++) {
+    for ($i=0; $i < 60; $i++) {
       $counselor = factory(App\Counselor::class)->create()->save();
+    }
+  }
+}
+
+class DevCounselorsToUsersSeeder extends Seeder {
+  public function run() {
+    for ($i=0; $i < 20; $i++) {
+      foreach (App\User::get() as $user) {
+        $counselor = App\Counselor::inRandomOrder()->first();
+        $user->counselors()->save($counselor);
+      }
     }
   }
 }
