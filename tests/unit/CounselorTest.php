@@ -1,10 +1,5 @@
 <?php
 
-// just realised that DatabaseTransaction will 'hold-over' the database and
-// DatabaseMigrations will rollback and re-migrate them for every test.
-// Knawledge
-
-use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 
 class CounselorTest extends TestCase {
@@ -18,6 +13,8 @@ class CounselorTest extends TestCase {
     $this->beforeApplicationDestroyed(function () {
         $this->artisan('migrate:rollback');
     });
+
+    // The golden vars
     $this->counselor = factory(App\Counselor::class)->create();
     $this->user = factory(App\User::class)->create();
   }
@@ -48,26 +45,6 @@ class CounselorTest extends TestCase {
     $this->assertTrue(isset($this->counselor->unit_only));
     $this->assertTrue(isset($this->counselor->ypt));
   }
-
-
-  // Counselor-User Tests
-
-  /** @test if */
-  public function a_counselor_can_belong_to_a_user() {
-    $this->user->counselors()->save($this->counselor);
-    $this->assertEquals($this->user->id, $this->counselor->user_id);
-  }
-
-  /** @test if */
-  public function a_counselor_can_retrieve_the_user_it_belongs_to() {
-    $this->user->counselors()->save($this->counselor);
-    $oldId = $this->user->id;
-    unset($this->user);
-
-    // this is where the magic happens
-    $this->assertEquals($oldId, $this->counselor->user->id);
-  }
-
 
 
 }
