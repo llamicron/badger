@@ -1,4 +1,4 @@
-Badger
+# Badger
 
 ![](https://travis-ci.org/SelectiveAlso/badger.svg?branch=master)
 
