@@ -23,11 +23,39 @@ class CounselorTest extends TestCase {
     $this->user = factory(App\User::class)->create();
   }
 
+
+  // CREATE -------------------------------------
+
   /** @test if */
   public function the_factory_can_make_a_counselor() {
     $this->counselor->save();
     $this->seeInDatabase('counselors', ['first_name' => $this->counselor->first_name]);
   }
+
+  /** @test if */
+  public function a_counselor_can_be_created_through_the_constructor() {
+    $counselor_deets = [
+      'first_name' => 'Luke',
+      'last_name' => 'Sweeney',
+      'email' => 'example@example.example',
+      'phone' => '9899899899',
+      'unit_num' => '123',
+      'bsa_id' => '123123123',
+      'unit_only' => false,
+      'ypt' => true,
+    ];
+    $counselor = new App\Counselor($counselor_deets);
+    $this->assertEquals('Luke', $counselor->first_name);
+  }
+
+  /** @test if */
+  public function a_counselor_can_be_created_from_a_request_object() {
+    // TODO: Write a test for creating a counselor from a request object
+    // this will require acceptance testing, probably.
+    // something like visit('/add') with a post request and shit
+  }
+
+  // READ --------------------------------------
 
   /** @test if */
   public function a_counselor_can_have_a_name() {
@@ -49,6 +77,8 @@ class CounselorTest extends TestCase {
     $this->assertTrue(isset($this->counselor->ypt));
   }
 
+  // UPDATE -------------------------------------------
+
   /** @test if */
   public function a_counselor_can_be_updated() {
     $this->counselor->first_name = 'Phila';
@@ -58,27 +88,7 @@ class CounselorTest extends TestCase {
     }
   }
 
-  /** @test if */
-  public function a_counselor_can_be_added_through_the_constructor() {
-    $counselor_deets = [
-      'first_name' => 'Luke',
-      'last_name' => 'Sweeney',
-      'email' => 'example@example.example',
-      'phone' => '9899899899',
-      'unit_num' => '123',
-      'bsa_id' => '123123123',
-      'unit_only' => false,
-      'ypt' => true,
-    ];
-    $counselor = new App\Counselor($counselor_deets);
-    $this->assertEquals('Luke', $counselor->first_name);
-  }
+  // DELETE -------------------------------------------
 
-  /** @test if */
-  public function a_counselor_can_be_created_from_a_request_object() {
-    // TODO: Write a test for creating a counselor from a request object
-    // this will require acceptance testing, probably.
-    // something like visit('/add') with a post request and shit
-  }
 
 }
