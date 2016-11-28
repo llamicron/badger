@@ -24,7 +24,9 @@ This is not the case for Badger, as it simplifies things, and requires less info
 ## Relationships
 ### Counselor-User
 The Counselor model has a many-to-one relationship with the User model. A user can have many counselors, but a counselor can only belong to one user, as evident in `app/Counselor.php`
-```
+```php
+<?php
+
 public function user() {
   return $this->belongsTo(User::class);
 }
@@ -33,7 +35,7 @@ And the reverse in `app/User.php`
 
 ### Counselor-Badge
 The Counselor model has a many-to-many relationship with the Badge model. A counselor can have many badges, and a badge instance can belong to many counselors, as evident in `app/Counselor.php`
-```
+```php
 public function badges() {
   return $this->belongsToMany(Badge::class);
 }

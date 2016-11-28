@@ -40,18 +40,18 @@ In contrast, using the `DatabaseTransactions` class will do the opposite, and th
 ```php
 <?php
 
-class ModelTest extends TestCase {
+class UserTest extends TestCase {
 
   use DatabaseTransactions;
 
   public function setUp() {
-    $this->model = new Model;
+    $this->user = new User;
   }
 
 
   // returns true
   public function test_some_generic_test() {
-    if(isset($this->model)) {
+    if(isset($this->user)) {
       return true;
     }
     return false;
@@ -59,7 +59,7 @@ class ModelTest extends TestCase {
 
   // returns "it's still here"
   public function test_some_other_generic_test() {
-    if(isset($this->model)) {
+    if(isset($this->user)) {
       return "it's still here";
     } else {
       return "it's gone";
@@ -68,7 +68,7 @@ class ModelTest extends TestCase {
 
 }
 ```
-and for each test in the `ModelTest` class I would have access to `$this->model`.
+and for each test in the `UserTest` class I would have access to `$this->`.
 This can be very useful for integration tests, where you don't want to have to build up your models every time you run a tests, and can improve test speeds.
 
 Hint: This is used in `tests/unit/CounselorTest.php`, check it out.
