@@ -4,6 +4,8 @@ use Illuminate\Foundation\Testing\DatabaseMigrations;
 
 class UserCounselorTest extends TestCase {
 
+// ---------------------------------------------
+
   use DatabaseMigrations;
 
   /** @test if */
@@ -26,4 +28,19 @@ class UserCounselorTest extends TestCase {
     $this->assertEquals($oldId, $counselor->user->id);
   }
 
+  /** @test if */
+  public function a_user_can_retrieve_the_counselors_it_owns() {
+    $user = factory(App\User::class)->create();
+    for ($i=0; $i < 3; $i++) {
+      $counselor = factory(App\Counselor::class)->create();
+      $user->counselors()->save($counselor);
+    }
+    $oldId = $user->counselors->first()->id;
+    unset($user);
+
+    $user = App\User::first();
+    $this->assertEquals($oldId, $user->counselors->first()->id);
+
+  }
+  
 }

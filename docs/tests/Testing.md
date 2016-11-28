@@ -33,3 +33,5 @@ class ModelTest extends TestCase {
 ```
 and for each test in the `ModelTest` class i would have access to `$this->model`.
 This can be very useful for integration tests, where you don't want to have to build up your models every time you run a tests, and can improve test speeds.
+
+Hint: This is used in `tests/unit/CounselorTest.php`, check it out.

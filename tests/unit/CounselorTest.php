@@ -4,12 +4,16 @@ use Illuminate\Foundation\Testing\DatabaseTransactions;
 
 class CounselorTest extends TestCase {
 
+// ------------------------------------------------------------
+
   use DatabaseTransactions;
 
   public function setUp() {
     parent::setUp();
+    // migrates before the first test...
     $this->artisan('migrate');
 
+    // ...rolls back before the last test
     $this->beforeApplicationDestroyed(function () {
         $this->artisan('migrate:rollback');
     });
@@ -19,7 +23,6 @@ class CounselorTest extends TestCase {
     $this->user = factory(App\User::class)->create();
   }
 
-  // Counselor Specific Tests
   /** @test if */
   public function the_factory_can_make_a_counselor() {
     $this->counselor->save();
@@ -44,6 +47,15 @@ class CounselorTest extends TestCase {
     $this->assertTrue(isset($this->counselor->bsa_id));
     $this->assertTrue(isset($this->counselor->unit_only));
     $this->assertTrue(isset($this->counselor->ypt));
+  }
+
+  /** @test if */
+  public function a_counselor_can_be_updated() {
+    $this->counselor->first_name = 'Phila';
+    $this->counselor->last_name = 'delphia';
+    if ($this->counselor->first_name . $this->counselor->last_name == 'Philadelphia') {
+      $this->assertTrue(true);
+    }
   }
 
 
