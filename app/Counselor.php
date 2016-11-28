@@ -20,4 +20,8 @@ class Counselor extends Model
   public function user() {
     return $this->belongsTo(User::class);
   }
+
+  // public function add($array) {
+  //
+  // }
 }

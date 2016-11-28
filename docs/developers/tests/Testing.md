@@ -12,8 +12,6 @@ Tests are split into `integration`, `unit`, and `database`. You can read on the 
 A mock database is created specifically for testing. Look in `config/database.php`, under the `badger_testing.sqlite` array item for details about the database. But it's just sqlite, so nothing special.
 For most tests, the database is migrated every time a test is run, and rolled back at the end of every test, so it's fresh for the next one. This is accomplished by using the `DatabaseMigrations` class, like so:
 ```php
-<?php
-
 class ModelTest extends TestCase {
 
   use DatabaseMigrations;
@@ -38,8 +36,6 @@ class ModelTest extends TestCase {
 ```
 In contrast, using the `DatabaseTransactions` class will do the opposite, and the changes will be persisted to the database for every test in that test class. For example, i could say:
 ```php
-<?php
-
 class UserTest extends TestCase {
 
   use DatabaseTransactions;

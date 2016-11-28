@@ -18,7 +18,7 @@ Columns in `Users` table:
 ### User-Counselor
 See `docs/models/Counselor.md`
 The User model has a many-to-one relationship with the Counselor model. A user can have many counselors, but a counselor can only belong to one user, as evident in `app/User.php`
-```
+```php
 // returns a collection of counselors 'owned' by the user
 public function counselors() {
   return $this->hasMany(Counselor::class);
