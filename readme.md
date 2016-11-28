@@ -2,6 +2,8 @@ Badger
 
 ![](https://travis-ci.org/SelectiveAlso/badger.svg?branch=master)
 
+Current Value: 0
+
 Version 2 of [MBCDB](https://github.com/SelectiveAlso/mbcdb) Made with Angular 2 and Laravel 5.3
 
 ***
@@ -26,6 +28,3 @@ value can be delivered to the business with a predictably fast cycle
 time. Rapid feedback from production to development then allows
 us to optimize that value delivery machine.'
  \- Gene Kim
-
-
-
