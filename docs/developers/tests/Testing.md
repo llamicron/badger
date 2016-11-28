@@ -23,13 +23,13 @@ class ModelTest extends TestCase {
     $model = factory(App\User::class)->create();
     $this->actingAs($user);
     $this->visit('/')...
-    // your amazing unit test
+    // your amazing integration test
   } // the database is rolled-back
 
   public function test_a_model_can_do_that() {
     // the database is re-migrated, so it's empty again.
     $this->visit('/')...
-    // another amazing unit test
+    // another amazing integration test
   } // database is rolled back again
 
 }
@@ -51,6 +51,15 @@ class ModelTest extends TestCase {
       return true;
     }
     return false;
+  }
+
+  // returns "it's still here"
+  public function test_some_other_generic_test() {
+    if(isset($this->model)) {
+      return "it's still here";
+    } else {
+      return "it's gone";
+    }
   }
 
 }
