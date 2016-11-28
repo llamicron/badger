@@ -1,4 +1,7 @@
-Badger ![](https://travis-ci.org/SelectiveAlso/badger.svg?branch=master)
+Badger
+
+![](https://travis-ci.org/SelectiveAlso/badger.svg?branch=master)
+
 Version 2 of [MBCDB](https://github.com/SelectiveAlso/mbcdb) Made with Angular 2 and Laravel 5.3
 
 ***
