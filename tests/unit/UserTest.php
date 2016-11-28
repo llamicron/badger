@@ -76,9 +76,15 @@ class UserTest extends TestCase {
   }
 
   /** @test if */
-  public function a_user_can_be_deleted_without_fucking_up_its_counselors() {
+  public function a_user_can_be_deleted_without_messing_up_its_counselors() {
     $user = factory(App\User::class)->create();
     $counselor = factory(App\Counselor::class)->create();
+    $user->counselors()->save($counselor);
+
+    $user->delete();
+    $counselor->user();
+
+    $this->assertTrue(true);
   }
 
 }
