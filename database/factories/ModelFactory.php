@@ -1,5 +1,7 @@
 <?php
 
+// TODO: Fix my factory snippet
+
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
 $factory->define(App\User::class, function (Faker\Generator $faker) {
     static $password;
@@ -24,5 +26,12 @@ $factory->define(App\Counselor::class, function (Faker\Generator $faker) {
     'bsa_id' => $faker->randomNumber(9),
     'unit_only' => $faker->boolean,
     'ypt' => $faker->boolean,
+  ];
+});
+
+$factory->define(App\Badge::class, function (Faker\Generator $faker) {
+  return [
+    'name' => $faker->word,
+    'code' => rand(1, 150),
   ];
 });

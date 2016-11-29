@@ -24,8 +24,6 @@ class CounselorTest extends TestCase {
   }
 
 
-  // CREATE -------------------------------------
-
   /** @test if */
   public function the_factory_can_make_a_counselor() {
     $this->counselor->save();
@@ -55,7 +53,6 @@ class CounselorTest extends TestCase {
     // something like visit('/add') with a post request and shit
   }
 
-  // READ --------------------------------------
 
   /** @test if */
   public function a_counselor_can_have_a_name() {
@@ -77,7 +74,6 @@ class CounselorTest extends TestCase {
     $this->assertTrue(isset($this->counselor->ypt));
   }
 
-  // UPDATE -------------------------------------------
 
   /** @test if */
   public function a_counselor_can_be_updated() {
@@ -88,7 +84,10 @@ class CounselorTest extends TestCase {
     }
   }
 
-  // DELETE -------------------------------------------
-
+  /** @test if */
+  public function a_counselor_can_return_their_full_name() {
+    $fullName = $this->counselor->first_name . " " . $this->counselor->last_name;
+    $this->assertEquals($fullName, $this->counselor->name());
+  }
 
 }

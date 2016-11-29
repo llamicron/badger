@@ -2,6 +2,8 @@
 
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 
+// TODO: Convert this to DatabaseTransactions
+
 class UserTest extends TestCase {
 
 // ---------------------------------------------------
@@ -76,15 +78,19 @@ class UserTest extends TestCase {
   }
 
   /** @test if */
-  public function a_user_can_be_deleted_without_messing_up_its_counselors() {
+  public function a_counselor_cannot_retrieve_its_user_if_the_user_was_deleted() {
     $user = factory(App\User::class)->create();
     $counselor = factory(App\Counselor::class)->create();
+
     $user->counselors()->save($counselor);
-
+    // referencing $counselor->user breaks this test. Eager loading maybe?
+    // Test is fine without it though.
+    // $counselor->user;
     $user->delete();
-    $counselor->user();
 
-    $this->assertTrue(true);
+    $this->assertEquals(null, $counselor->user);
   }
+
+
 
 }

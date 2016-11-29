@@ -20,4 +20,13 @@ class Counselor extends Model
   public function user() {
     return $this->belongsTo(User::class);
   }
+
+  public function badges() {
+    return $this->belongsToMany(Badge::class);
+  }
+
+  public function name() {
+    return $this->first_name . " " . $this->last_name;
+  }
+
 }
