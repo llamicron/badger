@@ -11,6 +11,7 @@ class DatabaseSeeder extends Seeder
         $this->call(DevUsersTableSeeder::class);
         $this->call(DevCounselorsTableSeeder::class);
         $this->call(DevCounselorsToUsersSeeder::class);
+        $this->call(DevBadgesTableSeeder::class);
       } else {
         // run prod seeders
         // $this->call(ProdBadgesTableSeeder::class);
@@ -41,6 +42,15 @@ class DevCounselorsToUsersSeeder extends Seeder {
         $counselor = App\Counselor::inRandomOrder()->first();
         $user->counselors()->save($counselor);
       }
+    }
+  }
+}
+
+class DevBadgesTableSeeder extends Seeder {
+  public function run() {
+    for ($i=0; $i < 120; $i++) {
+      $badge = factory(App\Badge::class)->create();
+      $badge->save();
     }
   }
 }

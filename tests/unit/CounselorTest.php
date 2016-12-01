@@ -23,7 +23,6 @@ class CounselorTest extends TestCase {
     $this->user = factory(App\User::class)->create();
   }
 
-
   /** @test if */
   public function the_factory_can_make_a_counselor() {
     $this->counselor->save();
@@ -53,7 +52,6 @@ class CounselorTest extends TestCase {
     // something like visit('/add') with a post request and shit
   }
 
-
   /** @test if */
   public function a_counselor_can_have_a_name() {
     $this->assertTrue(isset($this->counselor->first_name));
@@ -73,7 +71,6 @@ class CounselorTest extends TestCase {
     $this->assertTrue(isset($this->counselor->unit_only));
     $this->assertTrue(isset($this->counselor->ypt));
   }
-
 
   /** @test if */
   public function a_counselor_can_be_updated() {
