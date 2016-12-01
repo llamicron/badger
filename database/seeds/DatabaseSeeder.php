@@ -2,16 +2,15 @@
 
 use Illuminate\Database\Seeder;
 
-class DatabaseSeeder extends Seeder
-{
-    public function run()
-    {
+class DatabaseSeeder extends Seeder {
+    public function run() {
       if (env('PRODUCTION') === false) {
         // run dev seeders
         $this->call(DevUsersTableSeeder::class);
         $this->call(DevCounselorsTableSeeder::class);
         $this->call(DevCounselorsToUsersSeeder::class);
         $this->call(DevBadgesTableSeeder::class);
+        $this->call(DevDistrictsTableSeeder::class);
       } else {
         // run prod seeders
         // $this->call(ProdBadgesTableSeeder::class);
@@ -51,6 +50,18 @@ class DevBadgesTableSeeder extends Seeder {
     for ($i=0; $i < 120; $i++) {
       $badge = factory(App\Badge::class)->create();
       $badge->save();
+    }
+  }
+}
+
+class DevDistrictsTableSeeder extends Seeder {
+  public function run() {
+    for ($i=0; $i < 50; $i++) {
+      $district = factory(App\District::class)->create();
+      // $district = factory(App\District::class)->create([
+      //   'council_id' => App\Council::inRandomOrder()->first()->id;
+      // ]);
+      $district->save();
     }
   }
 }

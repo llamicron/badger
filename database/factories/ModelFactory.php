@@ -35,3 +35,9 @@ $factory->define(App\Badge::class, function (Faker\Generator $faker) {
     'code' => rand(1, 150),
   ];
 });
+
+$factory->define(App\District::class, function (Faker\Generator $faker) {
+  return [
+    'name' => $faker->company,
+  ];
+});
