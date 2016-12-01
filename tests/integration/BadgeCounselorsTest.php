@@ -2,7 +2,7 @@
 
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 
-class BadgeTest extends TestCase {
+class BadgeCounselorTest extends TestCase {
 
   use DatabaseMigrations;
 
