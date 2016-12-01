@@ -25,6 +25,7 @@ class CreateCounselorsTable extends Migration
           // YPT is Youth Protection Training. Something adult leaders need.
           $table->boolean('ypt')->default(false);
           $table->integer('user_id')->unsigned()->default(null)->nullable();
+          $table->integer('district_id')->unsigned()->default(null)->nullable();
           $table->nullableTimestamps();
         });
     }
