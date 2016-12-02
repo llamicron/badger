@@ -7,10 +7,10 @@ class DatabaseSeeder extends Seeder {
       if (env('PRODUCTION') === false) {
         // run dev seeders
         $this->call(DevUsersTableSeeder::class);
+        $this->call(DevDistrictsTableSeeder::class);
         $this->call(DevCounselorsTableSeeder::class);
         $this->call(DevCounselorsToUsersSeeder::class);
         $this->call(DevBadgesTableSeeder::class);
-        $this->call(DevDistrictsTableSeeder::class);
       } else {
         // run prod seeders
         // $this->call(ProdBadgesTableSeeder::class);
@@ -40,6 +40,8 @@ class DevCounselorsToUsersSeeder extends Seeder {
       foreach (App\User::get() as $user) {
         $counselor = App\Counselor::inRandomOrder()->first();
         $user->counselors()->save($counselor);
+        $district = App\District::inRandomOrder()->first();
+        $district->counselors()->save($counselor);
       }
     }
   }
